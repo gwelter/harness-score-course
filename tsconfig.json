@@ -15,5 +15,5 @@
     "skipLibCheck": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["src/**/*.js", "test/**/*.js"]
+  "include": ["src/**/*.js", "test/**/*.js", ".cursor/hooks/**/*.js"]
 }
