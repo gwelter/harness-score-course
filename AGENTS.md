@@ -10,8 +10,9 @@ Prefer the source of truth in the repo over this file when they disagree.
 - No HTTP API, database, UI, or external services.
 - Keep domain pure in `src/meeting-cost.js` (`calculateMeetingCost`); keep argv
   parsing and stdout/stderr I/O in `src/cli.js`.
-- Real tree: `package.json`, `src/meeting-cost.js`, `src/cli.js`, `PROJETO.md`,
-  `README.md`, `LICENSE`, `AGENTS.md`. Do not invent missing folders or tooling.
+- Real tree: `package.json`, `package-lock.json`, `src/`, `PROJETO.md`,
+  `README.md`, `LICENSE`, `AGENTS.md`, `.gitignore`, `.agents/` (rules, skills,
+  workflows). Do not invent missing tooling.
 
 ## Commands, domain, and runtime
 
@@ -27,16 +28,18 @@ Prefer the source of truth in the repo over this file when they disagree.
 - ESM only (`"type": "module"`, `.js` import specifiers). Node `>=24`. Native
   Node only; no runtime dependencies today—ask before adding any. Do not switch
   to CommonJS without an explicit ask.
+- Path-scoped source rules: `.agents/rules/`. Calculation changes: skill
+  `add-calculation-case`. Verification: `.agents/workflows/verify.md`.
 
 ## Safety and done criteria
 
 - Do not embed secrets; do not run destructive git/fs commands without an
   explicit ask; do not exfiltrate repo contents; do not `eval` CLI args; do not
   change `LICENSE` unless asked. App stays local/offline unless asked otherwise.
-- Do not invent files, services, CI, rules, skills, hooks, MCP, or `.gitignore`.
-- Do not edit `README.md`, `LICENSE`, `package.json`, or `PROJETO.md` unless
-  asked. Do not auto-commit.
-- Done when: request met without invented commands/files; domain/CLI split and
+- Do not invent CI, hooks, MCP, or sensors that are not in the repo.
+- Do not edit `README.md`, `LICENSE`, or `PROJETO.md` unless asked. Do not
+  auto-commit.
+- Done when: request met without invented commands; domain/CLI split and
   invariants held; only real commands used; ESM/Node/deps policy kept; errors
   actionable; no secrets or unsolicited destructive actions; out-of-scope files
   untouched.
