@@ -1,41 +1,40 @@
 ---
-description: Verify Meeting Cost CLI using only commands that exist today
+description: Verify Meeting Cost CLI with the real local sensors
 ---
 
 # Verify
 
 Run this workflow when the user asks to verify, smoke-test, or check the app.
 
-## Existing sensors
+## Commands
 
-1. Start the CLI with a known-good example:
+1. Full gate (preferred):
+
+   ```bash
+   npm run check
+   ```
+
+   Runs `lint`, `typecheck`, and `test`.
+
+2. Individual sensors when debugging a failure:
+
+   ```bash
+   npm run lint
+   npm run typecheck
+   npm test
+   ```
+
+3. Optional CLI smoke:
 
    ```bash
    npm start -- 6 45 120
    ```
 
-   Expect stdout:
+   Expect: `Meeting cost: 540.00 (6 participants × 45 min × 120/hour)`.
 
-   ```text
-   Meeting cost: 540.00 (6 participants × 45 min × 120/hour)
-   ```
+## Notes
 
-2. Smoke an invalid input (optional but recommended):
-
-   ```bash
-   npm start -- 0 45 120
-   ```
-
-   Expect stderr with an actionable `Error:` plus usage, and a non-zero exit.
-
-## Pending sensors
-
-Do **not** invent commands. These are not configured yet:
-
-- tests (`npm test` / test runner) — pending
-- lint — pending
-- typecheck — pending
-- formatter — pending
-- CI workflow — pending
-
-If verification is requested beyond `npm start`, report those sensors as pending instead of fabricating scripts.
+- Format with `npm run format` when Biome reports style/format issues.
+- CI (`.github/workflows/ci.yml`) repeats `npm ci`, lint, typecheck, and test on
+  `main` pushes and pull requests.
+- Do not invent extra scripts beyond those in `package.json`.

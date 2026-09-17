@@ -5,6 +5,14 @@ function printUsage() {
   console.error("Example: npm start -- 6 45 120");
 }
 
+/**
+ * @param {unknown} error
+ * @returns {string}
+ */
+function errorMessage(error) {
+  return error instanceof Error ? error.message : String(error);
+}
+
 function main() {
   const [, , participantsArg, durationArg, hourlyCostArg] = process.argv;
 
@@ -26,7 +34,7 @@ function main() {
         `(${participants} participants × ${durationMinutes} min × ${hourlyCost}/hour)`,
     );
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    console.error(`Error: ${errorMessage(error)}`);
     printUsage();
     process.exitCode = 1;
   }

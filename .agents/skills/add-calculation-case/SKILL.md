@@ -39,6 +39,6 @@ Before finishing, exercise at least:
 
 ## 5. Verify with real commands only
 
-- Run: `npm start -- <participants> <durationMinutes> <hourlyCost>`
-- Do not invent `npm test`, `npm run lint`, or typecheck — those sensors are pending.
-- For the full verification checklist, follow `.agents/workflows/verify.md` when asked to verify.
+- Prefer `npm run check` (lint + typecheck + test).
+- Also smoke: `npm start -- <participants> <durationMinutes> <hourlyCost>`.
+- For the verification checklist, follow `.agents/workflows/verify.md` when asked to verify.

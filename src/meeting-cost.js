@@ -7,7 +7,11 @@
  * @returns {number} Total labor cost.
  */
 export function calculateMeetingCost(participants, durationMinutes, hourlyCost) {
-  if (!Number.isFinite(participants) || !Number.isFinite(durationMinutes) || !Number.isFinite(hourlyCost)) {
+  if (
+    !Number.isFinite(participants) ||
+    !Number.isFinite(durationMinutes) ||
+    !Number.isFinite(hourlyCost)
+  ) {
     throw new Error("participants, durationMinutes, and hourlyCost must be finite numbers");
   }
 
